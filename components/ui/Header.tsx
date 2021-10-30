@@ -1,6 +1,8 @@
-import { Flex, Box, Text, useColorModeValue } from "@chakra-ui/react";
+import { Flex, Box, Text } from "@chakra-ui/react";
 import DarkModeSwitch from "components/ui/DarkModeSwitch";
 import {LogoIcon} from "styles/icons/customIcons";
+
+import NextLink from 'next/link';
 
 interface HeaderProps {
 
@@ -20,6 +22,7 @@ interface HeaderProps {
 }
 
 const Header = (props : HeaderProps) => {
+
     return (
         <Flex 
             flexDirection="row"
@@ -34,16 +37,20 @@ const Header = (props : HeaderProps) => {
                 flexDirection="row"
                 height="100%"
                 justifyContent="start"
-                mx="2rem"
+                marginLeft="1rem"
                 >
-                <Box padding=".5rem .5rem .5rem .5rem" minWidth="5rem">
-                    <LogoIcon edgeColor={props.logoIconEdgeColor} node1Color={props.logoIconNode1Color} node2Color={props.logoIconNode2Color}/>
-                </Box>
-                <Flex mx="1rem" alignItems="center" minWidth="7rem">
-                    <Text fontFamily="UbuntuMono" fontWeight="light" transition="color .3s" color={props.textColor}>Diagram Editor</Text>
-                </Flex>
+                <NextLink href="/" passHref>                      
+                    <Box padding=".5rem .5rem .5rem .5rem" minWidth="5rem" cursor="pointer">
+                        <LogoIcon edgeColor={props.logoIconEdgeColor} node1Color={props.logoIconNode1Color} node2Color={props.logoIconNode2Color}/>
+                    </Box>
+                </NextLink>                      
+                <NextLink href="/" passHref>                
+                    <Flex mx="1rem" alignItems="center" minWidth="7rem" userSelect="none" cursor="pointer">
+                            <Text fontFamily="UbuntuMono" fontWeight="light" transition="color .3s" color={props.textColor}>Diagram Editor</Text>                                       
+                    </Flex>
+                </NextLink>                     
             </Flex>
-            <Flex flexDirection="column" mx="3rem" minWidth="5rem" justifyContent="center">
+            <Flex flexDirection="column" mx="2rem" minWidth="5rem" justifyContent="center" userSelect="none">
                 <DarkModeSwitch
                     hoverColor={props.iconHoverColor}
                     baseColor={props.iconBaseColor}

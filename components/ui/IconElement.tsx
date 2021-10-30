@@ -24,6 +24,8 @@ const IconElement = (props : IconElementProps) => {
             margin={props.margin}
             display={props.display}
             justifyContent="center"
+            justifySelf="center"
+            flexDirection="column"
             height={props.height ? props.height : "90%"}
             width={props.width ? props.width : "90%"}
             padding="0px 0px"

@@ -14,7 +14,7 @@ const BaseLayout = (props : BaseLayoutProps) => {
     
     const backgroundColor = useColorModeValue("gray.50", "gray.900");
     const headerBackgroundColor = useColorModeValue("gray.50", "gray.900");
-    const headerBorderBottomColor = useColorModeValue("gray.600", "pink.100")
+    const headerBorderBottomColor = useColorModeValue("gray.600", "#f06")
     const headerTextColor = useColorModeValue("gray.900", "gray.50");
 
     const logoIconEdgeColor  = useColorModeValue("#f06", "#f06");
@@ -30,9 +30,10 @@ const BaseLayout = (props : BaseLayoutProps) => {
             </Head>
             <Flex
                 direction="column"
+                minHeight="500px"
                 height="100vh"
                 width="100%"
-                transition="backgroundColor .3s, opacity .5s"                
+                transition="background-color .3s, opacity .5s"                
                 backgroundColor={backgroundColor}
             >
                 <Header
