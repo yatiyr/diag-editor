@@ -13,7 +13,7 @@ const BaseLayout = (props : BaseLayoutProps) => {
     const iconActiveColor = useColorModeValue("black", "white");
     
     const backgroundColor = useColorModeValue("gray.50", "gray.900");
-    const headerBackgroundColor = useColorModeValue("gray.50", "gray.900");
+    const headerBackgroundColor = useColorModeValue("white", "gray.900");
     const headerBorderBottomColor = useColorModeValue("gray.600", "#f06")
     const headerTextColor = useColorModeValue("gray.900", "gray.50");
 

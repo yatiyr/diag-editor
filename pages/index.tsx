@@ -6,7 +6,7 @@ import IndexHeading from 'components/indexSections/IndexHeading';
 
 const Home: NextPage = () => {
 
-  const indexBackgroundColor = useColorModeValue("gray.50", "gray.900");
+  const indexBackgroundColor = useColorModeValue("white", "gray.900");
 
   const indexHeading_headingColor    = useColorModeValue("gray.900", "gray.50");
   const indexHeading_subtitleColor   = useColorModeValue("gray.800", "gray.200");
