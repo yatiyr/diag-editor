@@ -15,6 +15,8 @@ interface HeaderProps {
     backgroundColor : any;
 
     textColor: any;
+
+    borderBottomColor: any;
 }
 
 const Header = (props : HeaderProps) => {
@@ -25,6 +27,8 @@ const Header = (props : HeaderProps) => {
             justifyContent="space-between"
             backgroundColor={props.backgroundColor}
             transition="background .3s"
+            borderBottom="1px"
+            borderBottomColor={props.borderBottomColor}
             >
             <Flex
                 flexDirection="row"
@@ -36,7 +40,7 @@ const Header = (props : HeaderProps) => {
                     <LogoIcon edgeColor={props.logoIconEdgeColor} node1Color={props.logoIconNode1Color} node2Color={props.logoIconNode2Color}/>
                 </Box>
                 <Flex mx="1rem" alignItems="center" minWidth="7rem">
-                    <Text fontWeight="bold" transition="color .3s" color={props.textColor}>Diagram Editor</Text>
+                    <Text fontFamily="UbuntuMono" fontWeight="light" transition="color .3s" color={props.textColor}>Diagram Editor</Text>
                 </Flex>
             </Flex>
             <Flex flexDirection="column" mx="3rem" minWidth="5rem" justifyContent="center">
@@ -45,7 +49,7 @@ const Header = (props : HeaderProps) => {
                     baseColor={props.iconBaseColor}
                     activeColor={props.iconActiveColor}
                     display="flex"
-                    padding="0.7rem 0.7rem 0.7rem 0.7rem"/>
+                    padding="0.6rem 0.6rem 0.6rem 0.6rem"/>
             </Flex>
         </Flex>
     )

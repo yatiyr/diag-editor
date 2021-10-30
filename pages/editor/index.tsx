@@ -4,11 +4,10 @@ import BaseLayout from 'components/layouts/BaseLayout';
 import { Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 
 
-const Home: NextPage = () => {
+const Editor: NextPage = () => {
 
-  const indexBackgroundColor = useColorModeValue("gray.200", "gray.900");
-  const indexHeadingColor    = useColorModeValue("gray.600", "gray.200");
-
+  const indexBackgroundColor = useColorModeValue("gray.700", "gray.200");
+  const indexHeadingColor    = useColorModeValue("gray.200", "gray.800");
   return (
     <>
       <BaseLayout>
@@ -23,4 +22,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Editor;
