@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
 import BaseLayout from 'components/layouts/BaseLayout';
-import { Flex, Heading, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import { Flex, useColorModeValue } from '@chakra-ui/react';
 import IndexHeading from 'components/indexSections/IndexHeading';
 
 const Home: NextPage = () => {

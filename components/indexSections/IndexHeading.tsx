@@ -31,13 +31,16 @@ const IndexHeading = (props : IndexHeadingProps) => {
                         textAlign="center"
                         fontSize={["6xl", "6xl", "6xl", "6xl", "7xl", "7xl", "8xl" ]}
                         color={props.headingColor}
+                        fontWeight="medium"
                         >Diagram Editor
                     </Heading>
                     <Text 
                         textAlign="center"
                         fontSize={["3xl", "3xl", "3xl", "3xl", "3xl", "4xl", "5xl" ]}
                         marginBottom="2rem"
-                        color={props.subtitleColor}>
+                        color={props.subtitleColor}
+                        fontFamily="Inter"
+                        fontWeight="light">
                         Define agent behaviors with diagram editor and generate c++ 
                         code for the simulation interface.
                     </Text>
