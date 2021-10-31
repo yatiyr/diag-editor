@@ -28,7 +28,7 @@ const Console = () => {
 
         const newOutputs = Outputs.addRecord(
             outputs, OutputFactory.makeTextOutput(
-                `Console has been initialized.\nIt will expect some commands\nfrom the user and perform\noperations such as running the\ndiagram or generating code...`
+                `Console has been initialized.\nIt will expect some commands\nfrom the user and perform\noperations such as running the\ndiagram or generating code...\n`
             )
         );
 

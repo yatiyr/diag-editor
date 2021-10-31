@@ -35,7 +35,7 @@ const Editor: NextPage = () => {
               position="relative">
               <SplitPane primary="first" defaultSize={5*height/8} maxSize={3*height/4} split="horizontal">
                 <Diagram/>
-                <SplitPane primary="second" minSize={2*width/8} defaultSize={3*width/5} maxSize={3*width/5} split="vertical">
+                <SplitPane primary="second" minSize={1*width/5} defaultSize={1*width/5} maxSize={3*width/5} split="vertical">
                   <PropOutGroup/>
                   <Console/>            
                 </SplitPane>
