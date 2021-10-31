@@ -1,21 +1,42 @@
 import type { NextPage } from 'next'
 
 import BaseLayout from 'components/layouts/BaseLayout';
-import { Flex, Heading, useColorModeValue } from '@chakra-ui/react';
-
+import Sidebar from 'components/editor/Sidebar';
+import { Flex, useColorModeValue } from '@chakra-ui/react';
+import SplitPane from 'react-split-pane';
+import Diagram from 'components/editor/diagram/Diagram';
+import useWindowDimensions from 'utils/hooks/UseWindowDimensions';
 
 const Editor: NextPage = () => {
 
-  const indexBackgroundColor = useColorModeValue("gray.700", "gray.200");
-  const indexHeadingColor    = useColorModeValue("gray.200", "gray.800");
+  const indexBackgroundColor = useColorModeValue("white", "gray.900");
+  const indexHeadingColor    = useColorModeValue("gray.900", "gray.100");
+
+  const {height, width}      = useWindowDimensions();
+
   return (
     <>
       <BaseLayout>
+        {/* This is the main container of editor */}
         <Flex 
-          flexDirection="column"
+          flexDirection="row"
           height="100vh"
-          backgroundColor={indexBackgroundColor}>
-            <Heading fontFamily="Ubuntu" color={indexHeadingColor}>Eren Dere</Heading>
+          backgroundColor={indexBackgroundColor}
+          transition="color .3s, background-color .3s">
+            <Sidebar/>
+            {/* This is the container for diagram, console, output and properties */}
+            <Flex
+              flexDirection="column"
+              height="100%"
+              width="100%"
+              backgroundColor={indexBackgroundColor}
+              transition="color .3s, background-color .3s"
+              position="relative">
+              <SplitPane primary="first" defaultSize={5*height/8} maxSize={3*height/4} split="horizontal">
+                <Diagram/>
+                <div></div>
+              </SplitPane>
+            </Flex>
         </Flex>
       </BaseLayout>  
     </>
