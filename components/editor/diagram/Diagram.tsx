@@ -4,7 +4,7 @@ import { Flex, useColorModeValue } from "@chakra-ui/react";
 const Diagram = () => {
 
     const diagramBackgroundColor = useColorModeValue("white","gray.900");
-    const diagramBorderColor     = useColorModeValue("gray.600", "#f06");
+    const diagramBorderColor     = useColorModeValue("gray.300", "#ff006685");
 
     return(
         <>

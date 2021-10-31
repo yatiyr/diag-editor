@@ -6,6 +6,8 @@ import { Flex, useColorModeValue } from '@chakra-ui/react';
 import SplitPane from 'react-split-pane';
 import Diagram from 'components/editor/diagram/Diagram';
 import useWindowDimensions from 'utils/hooks/UseWindowDimensions';
+import PropOutGroup from 'components/editor/diagramUtils/PropOutGroup';
+import Console from 'components/editor/diagramUtils/Console';
 
 const Editor: NextPage = () => {
 
@@ -34,7 +36,10 @@ const Editor: NextPage = () => {
               position="relative">
               <SplitPane primary="first" defaultSize={5*height/8} maxSize={3*height/4} split="horizontal">
                 <Diagram/>
-                <div></div>
+                <SplitPane primary="first" minSize={1*width/6} defaultSize={3*width/5} maxSize={4*width/5} split="vertical">
+                  <PropOutGroup/>
+                  <Console/>            
+                </SplitPane>
               </SplitPane>
             </Flex>
         </Flex>
