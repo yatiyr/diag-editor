@@ -12,7 +12,6 @@ import Console from 'components/editor/diagramUtils/Console';
 const Editor: NextPage = () => {
 
   const indexBackgroundColor = useColorModeValue("white", "gray.900");
-  const indexHeadingColor    = useColorModeValue("gray.900", "gray.100");
 
   const {height, width}      = useWindowDimensions();
 
@@ -36,7 +35,7 @@ const Editor: NextPage = () => {
               position="relative">
               <SplitPane primary="first" defaultSize={5*height/8} maxSize={3*height/4} split="horizontal">
                 <Diagram/>
-                <SplitPane primary="first" minSize={1*width/6} defaultSize={3*width/5} maxSize={4*width/5} split="vertical">
+                <SplitPane primary="first" minSize={2*width/8} defaultSize={3*width/5} maxSize={3*width/5} split="vertical">
                   <PropOutGroup/>
                   <Console/>            
                 </SplitPane>

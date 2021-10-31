@@ -3,7 +3,7 @@ import { Flex, useColorModeValue } from "@chakra-ui/react"
 const Sidebar = () => {
 
     const sidebarBackgroundColor = useColorModeValue("white", "gray.900");
-    const sidebarBorderColor     = useColorModeValue("gray.300", "#ff006685");
+    const sidebarBorderColor     = useColorModeValue("gray.100", "#ff00662f");
 
     return(
         <Flex

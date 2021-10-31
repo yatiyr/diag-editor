@@ -14,7 +14,7 @@ const BaseLayout = (props : BaseLayoutProps) => {
     
     const backgroundColor = useColorModeValue("gray.50", "gray.900");
     const headerBackgroundColor = useColorModeValue("white", "gray.900");
-    const headerBorderBottomColor = useColorModeValue("gray.300", "#ff006685")
+    const headerBorderBottomColor = useColorModeValue("gray.100", "#ff00662f")
     const headerTextColor = useColorModeValue("gray.900", "gray.50");
 
     const logoIconEdgeColor  = useColorModeValue("#f06", "#f06");
