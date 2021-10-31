@@ -93,17 +93,50 @@ p {
   width: 10px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
+// /* Track */
+// ::-webkit-scrollbar-track {
+//   background: #f1f1f1; 
+// }
  
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888; 
+// /* Handle */
+// ::-webkit-scrollbar-thumb {
+//   background: #888; 
+// }
+
+// /* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//   background: #555; 
+// }
+
+
+/* Track */
+.dark {
+
+  ::-webkit-scrollbar-track {
+    background: #fc000000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #6f00278a; 
+    transition: background-color .3s ease-out;        
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6f0027e9; 
+  }  
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+.light {
+  ::-webkit-scrollbar-track {
+    background: #fc000000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #6f00278a; 
+    transition: background-color .3s ease-out;        
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6f0027e9; 
+  }  
 }

@@ -13,6 +13,7 @@ interface TerminalProps {
     inputStr: any;
     setInputStr: any;
     setEmulatorState: any;
+    acceptInput: any;
 }
 
 // TODO: Will be implemented soon
@@ -34,6 +35,7 @@ const Terminal = (props: TerminalProps) => {
                 props.setEmulatorState(emulatorState);
                 props.setInputStr("");
             }}
+            acceptInput={props.acceptInput}
             promptSymbol='>'
             theme={{
                 background: `#ffffff00`,
@@ -44,8 +46,8 @@ const Terminal = (props: TerminalProps) => {
                 fontSize: '0.8rem',
                 spacing: '0%',
                 fontFamily: 'UbuntuMono',
-                width: '100%',
-                height: '100%'
+                width: '95%',
+                height: '95%'
             }}            
         />                         
     )
