@@ -1,4 +1,5 @@
 import { Flex, useColorModeValue } from "@chakra-ui/react";
+import Flow from "./flow/Flow";
 
 
 const Diagram = () => {
@@ -19,6 +20,7 @@ const Diagram = () => {
                 height="100%"
                 transition="color .3s, background-color .3s">
                 {/* Will be implemented */}
+                <Flow/>
             </Flex>
         </>
     )
