@@ -4,7 +4,7 @@ import {
     EmulatorState, OutputFactory, CommandMapping,
     EnvironmentVariables, FileSystem, History,
     Outputs, defaultCommandMapping
-  } from 'javascript-terminal';
+} from 'javascript-terminal';
 
 import { useState, useEffect } from "react";
 import Terminal from "./terminal/Terminal";

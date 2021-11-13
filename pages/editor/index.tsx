@@ -24,7 +24,7 @@ const Editor: NextPage = () => {
           height="100vh"
           backgroundColor={indexBackgroundColor}
           transition="color .3s, background-color .3s">
-            <Sidebar/>
+            {/* <Sidebar/> */}
             {/* This is the container for diagram, console, output and properties */}
             <Flex
               flexDirection="column"

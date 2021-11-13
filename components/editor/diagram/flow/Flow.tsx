@@ -1,5 +1,11 @@
-import ReactFlow, {removeElements, addEdge, Elements} from 'react-flow-renderer';
 import { useState } from 'react';
+import ReactFlow, {
+  removeElements,
+  addEdge,
+  Elements,
+  MiniMap,
+  Controls,
+  Background } from 'react-flow-renderer';
 
 const initialElements : Elements<any> = [
     {
@@ -26,6 +32,11 @@ const initialElements : Elements<any> = [
     { id: 'e2-3', source: '2', target: '3' },
 ];
 
+const onLoad = (reactFlowInstance) => {
+  console.log("flow loaded:", reactFlowInstance);
+  reactFlowInstance.fitView();
+}
+
 const Flow = () => {
 
     const [elements, setElements] = useState(initialElements);
@@ -34,10 +45,33 @@ const Flow = () => {
     const onConnect = (params) => setElements((els) => addEdge(params, els));       
 
     return <ReactFlow 
-                elements={elements}
-                onElementsRemove={onElementsRemove}
-                onConnect={onConnect}
-                deleteKeyCode={46}/>
+              elements={elements}
+              onElementsRemove={onElementsRemove}
+              onConnect={onConnect}
+              deleteKeyCode={46}
+              onLoad={onLoad}
+              snapToGrid={true}
+              snapGrid={[4,4]}>
+              <MiniMap
+                nodeStrokeColor={(n : any): string =>  {
+                  if (n.style?.background) return n.style.background;
+                  if (n.type === 'input') return '#0041d0';
+                  if (n.type === 'output') return '#ff0072';
+                  if (n.type === 'default') return '#1a192b';
+
+                  return '#eee';
+                }}
+
+                nodeColor={(n : any): string => {
+                  if (n.style?.background) return n.style.background;
+
+                  return '#fff';
+                }}
+                nodeBorderRadius={2}                
+              />
+              <Controls/>
+              <Background color="#aaa" gap={16} />        
+            </ReactFlow>
 }
 
   export default Flow;
