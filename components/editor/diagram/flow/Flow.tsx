@@ -8,7 +8,8 @@ import ReactFlow, {
   Controls,
   Background, 
   isEdge,
-  Position} from 'react-flow-renderer';
+  Position,
+  ArrowHeadType} from 'react-flow-renderer';
 import GenericNode from '../elements/GenericNode';
 
 
@@ -91,12 +92,18 @@ const Flow = () => {
           data: { 
                   onChange: onChange, 
                   color: "#fff",
+                  sourcePositions: Position.Right,
+                  targetPositions: Position.Top,                  
                   targetPorts: [
-                                {id: "2_tp1", style: {background: '#555', top: `${35 + 25}px`}, isConnectible: true}
+                                {id: "2_tp1", style: {background: '#555'}, isConnectible: true},                                                                                                                                                                                                                                                                                                                                                                                                                                    
                                ],
                   sourcePorts: [
-                                {id: "2_sp1", style: {background: '#555', top: "77px"}, isConnectible: true},
-                                {id: "2_sp2", style: {background: '#555', top: "42px"}, isConnectible: true}
+                                {id: "2_sp1", style: {background: '#555'}, isConnectible: true},
+                                {id: "2_sp2", style: {background: '#555'}, isConnectible: true},
+                                {id: "2_sp1", style: {background: '#555'}, isConnectible: true},
+                                {id: "2_sp2", style: {background: '#555'}, isConnectible: true} ,
+                                {id: "2_sp1", style: {background: '#555'}, isConnectible: true},
+                                {id: "2_sp2", style: {background: '#555'}, isConnectible: true}                                                                                                   
                                ]
                 },
           style: { border: '1px solid #777', padding: 10 },
@@ -118,11 +125,11 @@ const Flow = () => {
         },
   
         { id: 'e1-2', source: '1', target: '2', animated: true, style: { stroke: '#fff' } },
-        { id: 'e2a-3', source: '2', sourceHandle: '2_sp1', target: '3', animated: true, style: { stroke: '#fff' } },
+        { id: 'e2a-3', source: '2', sourceHandle: '2_sp1', target: '3', arrowHeadType: ArrowHeadType.ArrowClosed, animated: true, style: { stroke: '#fff' } },
         { id: 'e2b-4', source: '2', sourceHandle: '2_sp2', target: '4', animated: true, style: { stroke: '#fff' } },
       ]);
 
-    }, []);
+    }, [elements]);
 
     return <ReactFlow 
               elements={elements}
