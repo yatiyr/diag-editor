@@ -78,7 +78,7 @@ const Flow = () => {
         })
       };
 
-      setElements([
+      setElements(() => [
         {
           id: '1',
           type: 'input',
@@ -92,18 +92,20 @@ const Flow = () => {
           data: { 
                   onChange: onChange, 
                   color: "#fff",
-                  sourcePositions: Position.Right,
+                  sourcePositions: Position.Bottom,
                   targetPositions: Position.Top,                  
                   targetPorts: [
-                                {id: "2_tp1", style: {background: '#555'}, isConnectible: true},                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                                {id: "2_tp1", name:"inp1" ,style: {background: '#555'}, isConnectible: true},                                                                                                                                                                                                                                                                                                                                                                                                                                    
                                ],
                   sourcePorts: [
-                                {id: "2_sp1", style: {background: '#555'}, isConnectible: true},
-                                {id: "2_sp2", style: {background: '#555'}, isConnectible: true},
-                                {id: "2_sp1", style: {background: '#555'}, isConnectible: true},
-                                {id: "2_sp2", style: {background: '#555'}, isConnectible: true} ,
-                                {id: "2_sp1", style: {background: '#555'}, isConnectible: true},
-                                {id: "2_sp2", style: {background: '#555'}, isConnectible: true}                                                                                                   
+                                {id: "2_sp1", name:"out1", style: {background: '#555'}, isConnectible: true},
+                                {id: "2_sp2", name:"out2", style: {background: '#555'}, isConnectible: true},
+                                {id: "2_sp3", name:"out3", style: {background: '#555'}, isConnectible: true},
+                                {id: "2_sp4", name:"out4", style: {background: '#555'}, isConnectible: true},
+                                {id: "2_sp5", name:"outasdas5", style: {background: '#555'}, isConnectible: true},
+                                {id: "2_sp6", name:"out6", style: {background: '#555'}, isConnectible: true},
+                                {id: "2_sp7", name:"out7", style: {background: '#555'}, isConnectible: true},
+                                {id: "2_sp8", name:"out8", style: {background: '#555'}, isConnectible: true}                                                                                                                                     
                                ]
                 },
           style: { border: '1px solid #777', padding: 10 },
@@ -129,7 +131,7 @@ const Flow = () => {
         { id: 'e2b-4', source: '2', sourceHandle: '2_sp2', target: '4', animated: true, style: { stroke: '#fff' } },
       ]);
 
-    }, [elements]);
+    }, []);
 
     return <ReactFlow 
               elements={elements}

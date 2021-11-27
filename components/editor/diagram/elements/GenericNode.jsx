@@ -32,55 +32,61 @@ const GenericNode = ({data, isConnectible}) => {
                (targetPositions === Position.Right && sourcePositions === Position.Left)) {
     
                 const maxPortNum = Math.max(targetPortNum, sourcePortNum);
-                const newVal = maxPortNum * 20;
-                if(maxPortNum * 20 <= 30)
-                    setHeight(minHeight);
+                const newVal = maxPortNum * 25;
+
+                setWidth(() => minWidth);
+
+                if(maxPortNum * 25 <= 30)
+                    setHeight(() => minHeight);
                 else
-                    setHeight(newVal);
+                    setHeight(() => newVal);
             }
             else if((targetPositions === Position.Top && sourcePositions === Position.Bottom) ||
                     (targetPositions === Position.Bottom && sourcePositions == Position.Top)) {
     
                 const maxPortNum = Math.max(targetPortNum, sourcePortNum);
-                const newVal = maxPortNum * 20;
-                if(maxPortNum * 20 <= 70)
-                    setWidth(minWidth);
+                const newVal = maxPortNum * 25;
+
+                setHeight(() => minHeight);
+
+                if(maxPortNum * 25 <= 70)
+                    setWidth(() => minWidth);
                 else
-                    setWidth(newVal);
+                    setWidth(() => newVal);
             }
             else {
                 if(targetPositions === Position.Top || targetPositions === Position.Bottom) {
                     const newWidth = targetPortNum * 20;
                     const newHeight = sourcePortNum * 20;
     
-                    if(targetPortNum * 20 <= 70)
-                        setWidth(minWidth);
+                    if(targetPortNum * 25 <= 70)
+                        setWidth(() => minWidth);
                     else
-                        setWidth(newWidth);
+                        setWidth(() => newWidth);
     
-                    if(sourcePortNum * 20 <= 30)
-                        setHeight(minHeight);
+                    if(sourcePortNum * 25 <= 30)
+                        setHeight(() => minHeight);
                     else
-                        setHeight(newHeight);
+                        setHeight(() => newHeight);
                 }
                 else {
-                    const newWidth = sourcePortNum * 20;
-                    const newHeight = targetPortNum * 20;
+                    const newWidth = sourcePortNum * 40;
+                    const newHeight = targetPortNum * 40;
     
-                    if(sourcePortNum * 20 <= 70)
-                        setWidth(minWidth);
+                    if(sourcePortNum * 25 <= 70)
+                        setWidth(() => minWidth);
                     else
-                        setWidth(newWidth);
+                        setWidth(() => newWidth);
     
-                    if(targetPortNum * 20 <= 30)
-                        setHeight(minHeight);
+                    if(targetPortNum * 25 <= 30)
+                        setHeight(() => minHeight);
                     else
-                        setHeight(newHeight);
+                        setHeight(() =>newHeight);
                 }
             }
         }
         
-    }, [data])
+    }, [data, width, height])
 
     const renderSourcePorts = (sourcePorts, sourcePositions) => {      
 
@@ -108,7 +114,7 @@ const GenericNode = ({data, isConnectible}) => {
                         offset = {left: `${(index+1)*(width+20)/(sourcePortNum+1)}px`};
                     }
                     else if(axis === 1) {
-                        offset = {top : `${35 + (index+1)*height/(sourcePortNum+1)}px`};
+                        offset = {top : `${10 + (index+1)*height/(sourcePortNum+1)}px`};
                     }                
 
                     const style = {...val.style, ...offset};
@@ -117,6 +123,7 @@ const GenericNode = ({data, isConnectible}) => {
                     <Handle type="source"
                             position={sourcePositions}
                             id={val.id}
+                            key={val.id}
                             style={style}
                             isConnectable={val.isConnectable}/>)
                 })
@@ -162,6 +169,7 @@ const GenericNode = ({data, isConnectible}) => {
                     <Handle type="target"
                             position={targetPositions}
                             id={val.id}
+                            key={val.id}
                             style={style}
                             isConnectable={val.isConnectable}/>)
                 })
@@ -170,15 +178,100 @@ const GenericNode = ({data, isConnectible}) => {
         }
     }
 
-    const renderSourcePortNames = (sourcePorts, sourcePositions) => {
-        if(sourcePorts) {
+    const renderPortNames = (ports, positions) => {
 
-        }
-    }
+        if(ports) {
+            const sourcePortNum = ports.length;
 
-    const renderTargetPortNames = (targetPorts, targetPositions) => {
-        if(targetPorts) {
+            var axis1 = 0;
+            var axis2 = 0;
             
+
+            if(positions === Position.Left) {
+                axis1 = 0;
+                axis2 = 0;
+            }
+            else if(positions === Position.Right) {
+                axis1 = 0;
+                axis2 = 1;
+            }
+            else if(positions === Position.Top) {
+                axis1 = 1;
+                axis2 = 0;
+            }
+            else if(positions === Position.Bottom) {
+                axis1 = 1;
+                axis2 = 1;
+            }
+
+            return (
+                ports.map((val, index) => {
+                    if(axis1 === 0 && axis2 === 0) {
+
+                        return(
+                            <Tooltip fontSize="x-small" placement="right" label={`${val.name}`} bg="white">
+                                <Text 
+                                    isTruncated 
+                                    width={`${15}px`}
+                                    fontSize="0.4rem"
+                                    position="absolute"
+                                    top={`${35 + (index+1)*height/(sourcePortNum+1)}px`}
+                                    left="5px">
+                                    {val.name}
+                                </Text>
+                            </Tooltip>
+                        )
+                    }
+                    else if(axis1 === 0 && axis2 === 1) {
+
+                        return(
+                            <Tooltip fontSize="x-small" placement="right" label={`${val.name}`} bg="white">
+                                <Text 
+                                    isTruncated 
+                                    width={`${15}px`}
+                                    fontSize="0.4rem"
+                                    position="absolute"
+                                    top={`${35 + (index+1)*height/(sourcePortNum+1)}px`}
+                                    right="5px">
+                                    {val.name}
+                                </Text>
+                            </Tooltip>
+                        )
+                    }
+                    else if(axis1 === 1 && axis2 === 0) {
+                        return(
+                            <Tooltip fontSize="x-small" placement="bottom" label={`${val.name}`} bg="white">
+                                <Text 
+                                    isTruncated 
+                                    width={`${15}px`}
+                                    fontSize="0.4rem"
+                                    position="absolute"
+                                    top="5px"
+                                    left={`${(index+1)*(width+20)/(sourcePortNum+1) - 7}px`}>
+                                    {val.name}
+                                </Text>
+                            </Tooltip>
+                        )
+                    }
+                    else if(axis1 === 1 && axis2 === 1) {
+                        return(
+                            <Tooltip fontSize="x-small" placement="top" label={`${val.name}`} bg="white">
+                                <Text 
+                                    isTruncated 
+                                    width={`${15}px`}
+                                    fontSize="0.4rem"
+                                    position="absolute"
+                                    bottom="5px"
+                                    left={`${(index+1)*(width+20)/(sourcePortNum+1) - 7}px`}>
+                                    {val.name}
+                                </Text>
+                            </Tooltip>
+                        )
+                    }
+
+                })
+            )
+
         }
     }
 
@@ -186,24 +279,27 @@ const GenericNode = ({data, isConnectible}) => {
         <Flex
             flexDirection = "column"
             alignItems = "center"
+            justifyContent="center"
+            justifyItems="center"
             minWidth = {`${minWidth}px`}
             width = {`${width}px`}            
-            minHeight = {`${minHeight}px`}>
+            minHeight = {`${minHeight}px`}
+            height = {`${height}px`}>
             {renderTargetPorts(data.targetPorts, data.targetPositions)}
             <Tooltip fontSize="x-small" placement="top" label={`Heading adasd`} bg="white">
-                <Text isTruncated height="20px" width={`${width}px`} fontSize="x-small" marginBottom="5px">Heading adasd</Text>
+                <Text isTruncated height="20px" width={`${width}px`} fontSize="x-small" textAlign="center">Heading adasd</Text>
             </Tooltip>
             <Flex
                 flexDirection= "row"
-                height = {`${height}px`}
-                fontSize= "0.35rem"
+                height="0px"
+                fontSize= "0.40rem"
+                fontFamily="Inconsolata"
                 justifyContent="space-between">
-                <div className="targets" height="100%" width="1em" position="relative">
-                    <Text position="absolute" top={`${35 + height/3 - 5}px`} right="5px" fontWeight="bold">output1</Text>
-                    <Text position="absolute" top={`${35 + 2*height/3 - 5}px`} right="5px" fontWeight="bold">output1</Text>                    
+                <div className="sources" height="100%" width="1em" position="relative">
+                    {renderPortNames(data.sourcePorts, data.sourcePositions)}                   
                 </div>
-                <div className="sources" position="relative">
-                    <Text position="absolute" top={`${35 + height/2 - 5}px`} left="5px" fontWeight="bold">input1</Text>
+                <div className="targets" position="relative">
+                    {renderPortNames(data.targetPorts, data.targetPositions)}
                 </div>
             </Flex>
             {renderSourcePorts(data.sourcePorts, data.sourcePositions)}
