@@ -94,7 +94,7 @@ const Flow = () => {
                   onChange: onChange, 
                   color: "#fff",
                   sourcePositions: Position.Right,
-                  targetPositions: Position.Top,                  
+                  targetPositions: Position.Left,                  
                   targetPorts: [
                                 {id: "2_tp1", name:"inp1" ,style: {background: '#555'}, isConnectible: true},                                                                                                                                                                                                                                                                                                                                                                                                                                    
                                ],
@@ -134,35 +134,37 @@ const Flow = () => {
 
     }, []);
 
-    return <ReactFlow 
-              elements={elements}
-              onElementsRemove={onElementsRemove}
-              onConnect={onConnect}
-              deleteKeyCode={46}
-              onLoad={onLoad}
-              snapToGrid={true}
-              snapGrid={[4,4]}
-              nodeTypes={nodeTypes}>
-              <MiniMap
-                nodeStrokeColor={(n : any): string =>  {
-                  if (n.style?.background) return n.style.background;
-                  if (n.type === 'input') return '#0041d0';
-                  if (n.type === 'output') return '#ff0072';
-                  if (n.type === 'default') return '#1a192b';
+    return(
+      <ReactFlow 
+          elements={elements}
+          onElementsRemove={onElementsRemove}
+          onConnect={onConnect}
+          deleteKeyCode={46}
+          onLoad={onLoad}
+          snapToGrid={true}
+          snapGrid={[4,4]}
+          nodeTypes={nodeTypes}>
+          <MiniMap
+            nodeStrokeColor={(n : any): string =>  {
+              if (n.style?.background) return n.style.background;
+              if (n.type === 'input') return '#0041d0';
+              if (n.type === 'output') return '#ff0072';
+              if (n.type === 'default') return '#1a192b';
 
-                  return '#eee';
-                }}
+              return '#eee';
+            }}
 
-                nodeColor={(n : any): string => {
-                  if (n.style?.background) return n.style.background;
+            nodeColor={(n : any): string => {
+              if (n.style?.background) return n.style.background;
 
-                  return '#fff';
-                }}
-                nodeBorderRadius={2}                
-              />
-              <Controls/>
-              <Background color={backgroundColor} gap={16} />        
-            </ReactFlow>
+              return '#fff';
+            }}
+            nodeBorderRadius={2}                
+          />
+          <Controls/>
+          <Background color={backgroundColor} gap={16} />        
+        </ReactFlow>
+    )
 }
 
   export default Flow;

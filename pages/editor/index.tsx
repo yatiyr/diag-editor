@@ -15,7 +15,7 @@ const Editor: NextPage = () => {
 
   const {height, width}      = useWindowDimensions();
 
-  return (
+  return(
     <>
       <BaseLayout>
         {/* This is the main container of editor */}

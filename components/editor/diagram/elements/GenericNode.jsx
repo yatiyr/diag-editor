@@ -37,7 +37,7 @@ const GenericPorts = memo(({ports, portPositions, width, height}) => {
 
                 const style = {...val.style, ...offset};
 
-                return (
+                return(
                 <Handle type="source"
                         position={portPositions}
                         id={val.id}
@@ -48,6 +48,13 @@ const GenericPorts = memo(({ports, portPositions, width, height}) => {
 
         )
 
+    }
+    else
+    {
+        return(
+            <>
+            </>
+        )
     }
 });
 
@@ -145,7 +152,14 @@ const GenericPortNames = memo(({ports, portPositions, width, height}) => {
             })
         )
 
-    }    
+    }
+    else
+    {
+        return(
+            <>
+            </>
+        )
+    }        
 });
 
 const GenericNodeContent = memo(({data, isConnectible}) => {
@@ -231,7 +245,7 @@ const GenericNodeContent = memo(({data, isConnectible}) => {
         
     }, [data, width, height])
 
-    return (
+    return(
         <Flex
             flexDirection = "column"
             alignItems = "center"
@@ -241,7 +255,7 @@ const GenericNodeContent = memo(({data, isConnectible}) => {
             width = {`${width}px`}            
             minHeight = {`${minHeight}px`}
             height = {`${height}px`}>
-            <GenericPorts ports={data.targetPorts} portPositions={data.targetPositions} width={width} height={height}/>
+            {<GenericPorts ports={data.targetPorts} portPositions={data.targetPositions} width={width} height={height}/> || null}
             <Tooltip fontSize="x-small" placement="top" label={`Heading adasd`} bg="white">
                 <Text isTruncated height="20px" width={`${width}px`} fontSize="x-small" textAlign="center">Heading adasd</Text>
             </Tooltip>
@@ -252,13 +266,13 @@ const GenericNodeContent = memo(({data, isConnectible}) => {
                 fontFamily="Inconsolata"
                 justifyContent="space-between">
                 <div className="sources" height="100%" width="1em" position="relative">
-                    <GenericPortNames ports={data.sourcePorts} portPositions={data.sourcePositions} width={width} height={height}/>                 
+                    {<GenericPortNames ports={data.sourcePorts} portPositions={data.sourcePositions} width={width} height={height}/> || null}                
                 </div>
                 <div className="targets" position="relative">
-                <GenericPortNames ports={data.targetPorts} portPositions={data.targetPositions} width={width} height={height}/>
+                    {<GenericPortNames ports={data.targetPorts} portPositions={data.targetPositions} width={width} height={height}/> || null}
                 </div>
             </Flex>
-            <GenericPorts ports={data.sourcePorts} portPositions={data.sourcePositions} width={width} height={height}/>
+            {<GenericPorts ports={data.sourcePorts} portPositions={data.sourcePositions} width={width} height={height}/> || null} 
         </Flex>
     )
 });
@@ -268,6 +282,6 @@ const GenericNode = memo(({data, isConnectible}) => {
     return(
         <GenericNodeContent data={data} isConnectible={isConnectible}/>
     )
-})
+});
 
 export default GenericNode;
