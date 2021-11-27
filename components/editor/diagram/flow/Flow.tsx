@@ -59,6 +59,7 @@ const Flow = () => {
 
     useEffect(() => {
       const onChange = (event : any) => {
+
         setElements((els : any) : any => {
           els.map((e: any) => {
             if (isEdge(e) || e.id !== 2) {
@@ -92,7 +93,7 @@ const Flow = () => {
           data: { 
                   onChange: onChange, 
                   color: "#fff",
-                  sourcePositions: Position.Bottom,
+                  sourcePositions: Position.Right,
                   targetPositions: Position.Top,                  
                   targetPorts: [
                                 {id: "2_tp1", name:"inp1" ,style: {background: '#555'}, isConnectible: true},                                                                                                                                                                                                                                                                                                                                                                                                                                    
