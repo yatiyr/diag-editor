@@ -140,3 +140,34 @@ p {
     background: #6f0027e9; 
   }  
 }
+
+
+
+
+
+#arrow {
+
+  &_closed {
+    &_light {
+      stroke: #1f2233;
+      fill: #1f2233;
+    }
+
+    &_dark {
+      stroke: #fff;
+      fill: #fff;
+    }    
+  }
+
+  &_open {
+    &_light {
+      stroke: #1f2233;
+    }
+
+    &_dark {
+      stroke: #fff;
+    }
+  }
+
+
+}

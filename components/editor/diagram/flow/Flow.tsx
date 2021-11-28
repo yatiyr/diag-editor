@@ -10,12 +10,17 @@ import ReactFlow, {
   isEdge,
   Position,
   ArrowHeadType} from 'react-flow-renderer';
+import GenericEdge from '../elements/GenericEdge';
 import GenericNode from '../elements/GenericNode';
 
 
 const nodeTypes = {
   GenericNode: GenericNode
 };
+
+const edgeTypes = {
+  GenericEdge: GenericEdge
+}
 
 const initialElements : Elements<any> = [
     {
@@ -91,25 +96,24 @@ const Flow = () => {
           id: '2',
           type: 'GenericNode',
           data: { 
+                  name: "Example Node",
                   onChange: onChange, 
-                  color: "#fff",
                   sourcePositions: Position.Right,
                   targetPositions: Position.Left,                  
                   targetPorts: [
-                                {id: "2_tp1", name:"inp1" ,style: {background: '#555'}, isConnectible: true},                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                                {id: "2_tp1", name:"inp1" , isConnectible: true},                                                                                                                                                                                                                                                                                                                                                                                                                                    
                                ],
                   sourcePorts: [
-                                {id: "2_sp1", name:"out1", style: {background: '#555'}, isConnectible: true},
-                                {id: "2_sp2", name:"out2", style: {background: '#555'}, isConnectible: true},
-                                {id: "2_sp3", name:"out3", style: {background: '#555'}, isConnectible: true},
-                                {id: "2_sp4", name:"out4", style: {background: '#555'}, isConnectible: true},
-                                {id: "2_sp5", name:"outasdas5", style: {background: '#555'}, isConnectible: true},
-                                {id: "2_sp6", name:"out6", style: {background: '#555'}, isConnectible: true},
-                                {id: "2_sp7", name:"out7", style: {background: '#555'}, isConnectible: true},
-                                {id: "2_sp8", name:"out8", style: {background: '#555'}, isConnectible: true}                                                                                                                                     
+                                {id: "2_sp1", name:"out1", isConnectible: true},
+                                {id: "2_sp2", name:"out2", isConnectible: true},
+                                {id: "2_sp3", name:"out3", isConnectible: true},
+                                {id: "2_sp4", name:"out4", isConnectible: true},
+                                {id: "2_sp5", name:"outasdas5", isConnectible: true},
+                                {id: "2_sp6", name:"out6", isConnectible: true},
+                                {id: "2_sp7", name:"out7", isConnectible: true},
+                                {id: "2_sp8", name:"out8", isConnectible: true}                                                                                                                                     
                                ]
                 },
-          style: { border: '1px solid #777', padding: 10 },
           position: { x: 250, y: 50 },
         },
         {
@@ -126,10 +130,51 @@ const Flow = () => {
           position: { x: 550, y: 100 },
           targetPosition: Position.Left,
         },
-  
-        { id: 'e1-2', source: '1', target: '2', animated: true, style: { stroke: '#fff' } },
-        { id: 'e2a-3', source: '2', sourceHandle: '2_sp1', target: '3', arrowHeadType: ArrowHeadType.ArrowClosed, animated: true, style: { stroke: '#fff' } },
-        { id: 'e2b-4', source: '2', sourceHandle: '2_sp2', target: '4', animated: true, style: { stroke: '#fff' } },
+        {
+          id: '5',
+          type: 'output',
+          data: { label: 'Output C' },
+          position: { x: 550, y: 300 },
+          targetPosition: Position.Left,
+        },  
+        { 
+          id: 'e1-2',
+          source: '1',
+          target: '2',
+          animated: true,
+          style: { stroke: '#fff' }
+        },
+        {
+          id: 'e2a-3',
+          source: '2',
+          sourceHandle: '2_sp1',
+          target: '3',
+          arrowHeadType: ArrowHeadType.ArrowClosed,
+          animated: true,
+          style: { stroke: '#fff' }
+        },
+        { 
+          id: 'e2b-4',
+          source: '2',
+          sourceHandle: '2_sp2',
+          target: '4',
+          animated: true,
+          style: { stroke: '#fff' }
+        },
+        {
+          id: 'e2b-5',
+          type: 'GenericEdge',
+          data: { 
+                  text: 'this is a generic edge',
+                  markerStart: '',
+                  markerMid: '',
+                  markerEnd: 'arrow_open'
+                },
+          source: '2',
+          sourceHandle: '2_sp3',
+          target: '5',
+          animated: true,
+        },        
       ]);
 
     }, []);
@@ -143,7 +188,8 @@ const Flow = () => {
           onLoad={onLoad}
           snapToGrid={true}
           snapGrid={[4,4]}
-          nodeTypes={nodeTypes}>
+          nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}>
           <MiniMap
             nodeStrokeColor={(n : any): string =>  {
               if (n.style?.background) return n.style.background;

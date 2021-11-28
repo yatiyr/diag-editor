@@ -2,12 +2,15 @@ import React, {memo, useEffect} from 'react';
 import { AccordionItem, Box, Flex, Text, Tooltip } from '@chakra-ui/react';
 import { Handle, Position } from 'react-flow-renderer';
 import { useState } from 'react';
-
+import { useColorModeValue } from '@chakra-ui/react';
 
 const targetHandleStyle = {background: '#555'};
 
 
 const GenericPorts = memo(({ports, portPositions, width, height}) => {
+
+    const color = useColorModeValue("#1f2233", "#fff");
+    const mode  = useColorModeValue("light", "dark");
 
     if(ports) {
 
@@ -35,10 +38,11 @@ const GenericPorts = memo(({ports, portPositions, width, height}) => {
                     offset = {top : `${10 + (index+1)*height/(sourcePortNum+1)}px`};
                 }                
 
-                const style = {...val.style, ...offset};
+                const style = {...val.style, ...offset, borderRadius: 0, background: color, border: '0px solid #fff', height: '5px', width: '5px'};
 
                 return(
                 <Handle type="source"
+                        className={`handle_${axis}_${mode}`}
                         position={portPositions}
                         id={val.id}
                         key={val.id}
@@ -89,13 +93,18 @@ const GenericPortNames = memo(({ports, portPositions, width, height}) => {
                 if(axis1 === 0 && axis2 === 0) {
 
                     return(
-                        <Tooltip fontSize="x-small" placement="right" label={`${val.name}`} bg="white">
+                        <Tooltip
+                            fontSize="x-small"
+                            placement="right"
+                            label={`${val.name}`}
+                            bg="white"
+                            key={val.id}>
                             <Text 
                                 isTruncated 
                                 width={`${15}px`}
                                 fontSize="0.4rem"
                                 position="absolute"
-                                top={`${5 + (index+1)*height/(sourcePortNum+1)}px`}
+                                top={`${6 + (index+1)*height/(sourcePortNum+1)}px`}
                                 left="5px">
                                 {val.name}
                             </Text>
@@ -105,13 +114,18 @@ const GenericPortNames = memo(({ports, portPositions, width, height}) => {
                 else if(axis1 === 0 && axis2 === 1) {
 
                     return(
-                        <Tooltip fontSize="x-small" placement="left" label={`${val.name}`} bg="white">
+                        <Tooltip
+                            fontSize="x-small"
+                            placement="left"
+                            label={`${val.name}`}
+                            bg="white"
+                            key={val.id}>
                             <Text 
                                 isTruncated 
                                 width={`${15}px`}
                                 fontSize="0.4rem"
                                 position="absolute"
-                                top={`${5 + (index+1)*height/(sourcePortNum+1)}px`}
+                                top={`${6 + (index+1)*height/(sourcePortNum+1)}px`}
                                 right="5px">
                                 {val.name}
                             </Text>
@@ -120,7 +134,12 @@ const GenericPortNames = memo(({ports, portPositions, width, height}) => {
                 }
                 else if(axis1 === 1 && axis2 === 0) {
                     return(
-                        <Tooltip fontSize="x-small" placement="bottom" label={`${val.name}`} bg="white">
+                        <Tooltip
+                            fontSize="x-small"
+                            placement="bottom"
+                            label={`${val.name}`}
+                            bg="white"
+                            key={val.id}>
                             <Text 
                                 isTruncated 
                                 width={`${15}px`}
@@ -135,7 +154,12 @@ const GenericPortNames = memo(({ports, portPositions, width, height}) => {
                 }
                 else if(axis1 === 1 && axis2 === 1) {
                     return(
-                        <Tooltip fontSize="x-small" placement="top" label={`${val.name}`} bg="white">
+                        <Tooltip
+                            fontSize="x-small"
+                            placement="top"
+                            label={`${val.name}`}
+                            bg="white"
+                            key={val.id}>
                             <Text 
                                 isTruncated 
                                 width={`${15}px`}
@@ -169,9 +193,6 @@ const GenericNodeContent = memo(({data, isConnectible}) => {
 
     const [height, setHeight] = useState(minHeight);
     const [width, setWidth] = useState(minWidth);
-    const padding = 0.625;
-
-    console.log("asdasd");
 
     useEffect(() => {
 
@@ -256,8 +277,8 @@ const GenericNodeContent = memo(({data, isConnectible}) => {
             minHeight = {`${minHeight}px`}
             height = {`${height}px`}>
             {<GenericPorts ports={data.targetPorts} portPositions={data.targetPositions} width={width} height={height}/> || null}
-            <Tooltip fontSize="x-small" placement="top" label={`Heading adasd`} bg="white">
-                <Text isTruncated height="20px" width={`${width}px`} fontSize="x-small" textAlign="center">Heading adasd</Text>
+            <Tooltip fontSize="x-small" placement="top" label={data.name} bg="white">
+                <Text isTruncated height="20px" width={`${width}px`} fontSize="x-small" textAlign="center">{data.name}</Text>
             </Tooltip>
             <Flex
                 flexDirection= "row"
@@ -279,8 +300,23 @@ const GenericNodeContent = memo(({data, isConnectible}) => {
 
 
 const GenericNode = memo(({data, isConnectible}) => {
+
+    const backgroundColor = useColorModeValue("#fff", "#1f2233");
+    const borderColor = useColorModeValue("#1f2233", "#fff");
+    const color = useColorModeValue("#1f2233", "#fff");
+
+    const customNodeStyles = {
+        background: backgroundColor,
+        color: color,
+        padding: '10px',
+        border: `1px solid ${borderColor}`
+      };    
+
+
     return(
-        <GenericNodeContent data={data} isConnectible={isConnectible}/>
+        <div style={customNodeStyles}>
+            <GenericNodeContent data={data} isConnectible={isConnectible}/>
+        </div>
     )
 });
 
